@@ -60,7 +60,6 @@ with st.form("user_inputs"):
                 print(f"Prompt Tokens:{cb.prompt_tokens}")
                 print(f"Completion Tokens:{cb.completion_tokens}")
                 print(f"Total Cost:{cb.total_cost}")
-
                 if isinstance(response, dict):
                     # Extract data
                     quiz = response.get("quiz", None)
@@ -69,6 +68,7 @@ with st.form("user_inputs"):
                         if table_data is not None:
                             df= pd.DataFrame(table_data)
                             df.index = df.index + 1
+                            df.to_csv(f"{subject}.csv",index=False)
                             st.table(df)
                             # Display the review in text box
                             st.text_area(label="Review", value= response["review"])
@@ -76,3 +76,33 @@ with st.form("user_inputs"):
                             st.error("Error in the table data")
                 else:
                     st.write(response)
+
+                
+                # #Download
+                # quiz = json.loads(quiz)
+                # quiz_table_data = []
+                # #type(quiz_table_data) format table
+                # for key, value in quiz.items():
+                #     mcq = value['mcq']
+                #     options = "//".join( [
+                #             f"{option}: {option_value}"
+                #             for option, option_value in value["options"].items()
+                #             ])
+                #     correct = value["correct"]
+                #     quiz_table_data.append({"MCQ": mcq, "Choices": options, "Correct": correct})
+
+                # quiz=pd.DataFrame(quiz_table_data)
+                # quiz.to_csv(f"{subject}.csv",index=False)
+
+
+file_path= f"./{subject}.csv"
+file_exits = os.path.isfile(file_path)
+if file_exits and st.button("Download Resource File"):
+    with open(file_path, "rb") as file:
+      file_content= file.read()
+    st.download_button(
+        label="Click to Download",
+        data=file_content,
+        file_name="resource_file.csv",
+        key="download_button",
+                    )
