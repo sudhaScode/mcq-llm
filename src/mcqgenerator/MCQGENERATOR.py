@@ -1,7 +1,5 @@
-import pandas as pd
 import os
 from dotenv import load_dotenv
-from src.mcqgenerator.utils import read_file, get_table_data
 
 # importing project dependency packages
 from langchain_openai import ChatOpenAI
