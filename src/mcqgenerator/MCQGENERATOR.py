@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 # importing project dependency packages
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain, SequentialChain
+from langchain.chains import LLMChain, SequentialChain  
 
 # laod environment variables from the .env file
 
