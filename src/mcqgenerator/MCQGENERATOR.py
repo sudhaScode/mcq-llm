@@ -6,10 +6,10 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain  
 
-# laod environment variables from the .env file
-
+# load environment variables from the .env file
 load_dotenv()
 KEY = os.getenv("OPENAI_API_KEY")
+print(KEY)
 
 llm = ChatOpenAI(openai_api_key = KEY, model_name = "gpt-3.5-turbo", temperature=0.1)
 

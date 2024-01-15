@@ -69,7 +69,7 @@ with st.form("user_inputs"):
                             df= pd.DataFrame(table_data)
                             df.index = df.index + 1
                             df.to_csv(f"{subject}.csv",index=False)
-                            st.table(df)
+                            a = st.table(df)
                             # Display the review in text box
                             st.text_area(label="Review", value= response["review"])
                         else:
